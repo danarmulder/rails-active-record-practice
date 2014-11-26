@@ -2,6 +2,7 @@
   <h1>People</h1>
 </div>
 
+<h3>Awesome People </h3>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -15,7 +16,9 @@
       <th>Created At</th>
   </thead>
   <tbody>
-    <% @people.each do |person| %>
+    <% alpha_people = @people.order(:first_name) %>
+    <% alpha_people.each do |person| %>
+      <% if person.awesome == true %>
       <tr>
         <td><%= person.id %></td>
         <td><%= person.first_name %></td>
@@ -26,6 +29,41 @@
         <td><%= person.awesome %></td>
         <td><%= person.created_at %></td>
       </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Green-eyed People who are Awesome</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Eye Color</th>
+      <th>Date of Birth</th>
+      <th>Height in Inches</th>
+      <th>Awesome?</th>
+      <th>Created At</th>
+  </thead>
+  <tbody>
+    <% alpha_people = @people.order(:first_name) %>
+    <% alpha_people.each do |person| %>
+      <% if person.awesome == true %>
+        <% if person.eye_color == "green" %>
+      <tr>
+        <td><%= person.id %></td>
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.eye_color %></td>
+        <td><%= person.date_of_birth %></td>
+        <td><%= person.height_in_inches %></td>
+        <td><%= person.awesome %></td>
+        <td><%= person.created_at %></td>
+      </tr>
+        <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>
